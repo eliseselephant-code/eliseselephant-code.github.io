@@ -3,140 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinzville Pet Care Simulator</title>
+    <title>Kinzville Care Center - Elise House</title>
     <link rel="stylesheet" href="css/mysite.css">
     <style>
-        /* Specific styles for the Web App simulator */
-        .simulator-card {
+        /* Specific simulator styles that build on top of mysite.css */
+        .simulator-container {
             text-align: center;
-            padding: 30px;
         }
-        .kinzcash-display {
+        .kinzcash-badge {
             background: #FFEB3B;
             color: #333;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 900;
             display: inline-block;
-            margin-bottom: 20px;
-            border: 2px solid #00AEEF;
+            margin-bottom: 30px;
+            border: 3px solid #00AEEF;
+            box-shadow: 0 4px 0px #d4c42f;
+        }
+        .pet-display {
+            background: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            border: 4px dashed #00AEEF;
+            margin-bottom: 30px;
         }
         .pet-image {
-            max-width: 250px;
+            max-width: 220px;
             height: auto;
-            margin: 20px 0;
-            transition: transform 0.2s;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .status-bar-container {
-            width: 100%;
-            background: #eee;
-            border-radius: 10px;
-            margin: 10px 0;
-            height: 25px;
-            border: 2px solid #333;
+        .status-label {
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #555;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .progress-container {
+            width: 80%;
+            background: #e0e0e0;
+            border-radius: 15px;
+            margin: 0 auto 25px auto;
+            height: 30px;
+            border: 3px solid #333;
+            overflow: hidden;
         }
         #hunger-bar {
             width: 100%;
             height: 100%;
-            background: #2ed465; /* Green for full health */
-            border-radius: 8px;
-            transition: width 0.5s;
+            background: #2ed465;
+            transition: width 0.4s ease, background-color 0.4s ease;
         }
-        .action-btns {
-            margin-top: 20px;
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
-        .btn-game {
+        .game-btn {
             cursor: pointer;
-            padding: 10px 20px;
+            padding: 15px 25px;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             font-weight: bold;
-            margin: 5px;
             color: white;
+            text-transform: uppercase;
+            box-shadow: 0 4px 0px rgba(0,0,0,0.2);
+            transition: transform 0.1s;
         }
+        .game-btn:active { transform: translateY(4px); box-shadow: none; }
         .feed-btn { background-color: #E91E63; }
         .play-btn { background-color: #00AEEF; }
+        
+        #game-status-msg {
+            height: 24px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #E91E63;
+        }
     </style>
 </head>
-<body>
+<body id="page-top">
 
     <nav class="custom-nav">
         <a href="index.html" class="nav-brand">Home</a>
         <div class="nav-links">
-            <a href="scratch.html">Webkinz Page</a>
+            <a href="scratch.html">Hobbies</a>
+            <a href="webapp.html">Care Center</a>
         </div>
     </nav>
 
     <header class="custom-header">
-        <h1>Kinzville Care Center</h1>
-        <div class="star-divider">★ ★ ★</div>
+        <div class="header-content">
+            <h1>Kinzville Care Center</h1>
+            <div class="star-divider">★ ★ ★</div>
+            <p>Keep your pet happy and fed!</p>
+        </div>
     </header>
 
     <main class="content-box">
-        <div class="simulator-card">
-            <div class="kinzcash-display">
-                💰 KinzCash: <span id="kinzcash-amount">500</span>
+        <div class="simulator-container">
+            <div class="kinzcash-badge">
+                💰 KinzCash: <span id="cash-count">500</span>
             </div>
 
-            <h2>Hello, Cheeky Dog!</h2>
-            
-            <img src="assets/img/Cheeky_Dog.webp" id="pet-pic" class="pet-image" alt="Cheeky Dog">
+            <div class="pet-display">
+                <h3>Cheeky Dog</h3>
+                <img src="assets/img/Cheeky_Dog.webp" id="pet-sprite" class="pet-image" alt="Cheeky Dog">
+            </div>
 
-            <div class="status-box">
-                <p>Hunger Level</p>
-                <div class="status-bar-container">
+            <div class="status-section">
+                <span class="status-label">Pet Hunger</span>
+                <div class="progress-container">
                     <div id="hunger-bar"></div>
                 </div>
             </div>
 
-            <div class="action-btns">
-                <button class="btn-game feed-btn" onclick="feedPet()">Feed (Cost: 20kc)</button>
-                <button class="btn-game play-btn" onclick="playGame()">Play Game (Earn: 50kc)</button>
+            <div class="controls">
+                <button class="game-btn feed-btn" onclick="handleAction('feed')">
+                    Feed Pet (-20kc)
+                </button>
+                <button class="game-btn play-btn" onclick="handleAction('play')">
+                    Play Game (+50kc)
+                </button>
             </div>
             
-            <p id="game-message" style="margin-top: 15px; font-weight: bold; color: #E91E63;"></p>
+            <p id="game-status-msg"></p>
+        </div>
+
+        <div class="top-btn-container">
+            <a href="index.html" class="back-to-top">Exit to Profile</a>
         </div>
     </main>
 
     <script>
-        let kinzcash = 500;
-        let hunger = 100;
+        // State Variables
+        let kc = 500;
+        let hungerLevel = 80;
+        const msgEl = document.getElementById('game-status-msg');
+        const petImg = document.getElementById('pet-sprite');
 
-        function updateDisplay() {
-            document.getElementById('kinzcash-amount').innerText = kinzcash;
-            document.getElementById('hunger-bar').style.width = hunger + "%";
+        /**
+         * Updates the visual UI based on current state
+         */
+        function updateUI() {
+            // Update Text
+            document.getElementById('cash-count').innerText = kc;
             
-            // Change color if hungry
-            if (hunger < 30) {
-                document.getElementById('hunger-bar').style.backgroundColor = "red";
+            // Update Progress Bar
+            const bar = document.getElementById('hunger-bar');
+            bar.style.width = hungerLevel + "%";
+
+            // Update Colors based on health
+            if (hungerLevel > 60) {
+                bar.style.backgroundColor = "#2ed465"; // Green
+            } else if (hungerLevel > 30) {
+                bar.style.backgroundColor = "#FFEB3B"; // Yellow
             } else {
-                document.getElementById('hunger-bar').style.backgroundColor = "#2ed465";
+                bar.style.backgroundColor = "#f44336"; // Red
             }
         }
 
-        function feedPet() {
-            if (kinzcash >= 20) {
-                kinzcash -= 20;
-                hunger = Math.min(hunger + 20, 100);
-                document.getElementById('game-message').innerText = "Yum! That was delicious!";
-                // Little bounce effect
-                document.getElementById('pet-pic').style.transform = "scale(1.1)";
-                setTimeout(() => document.getElementById('pet-pic').style.transform = "scale(1)", 200);
-            } else {
-                document.getElementById('game-message').innerText = "Not enough KinzCash!";
+        /**
+         * Main Game Logic
+         */
+        function handleAction(type) {
+            if (type === 'feed') {
+                if (kc >= 20) {
+                    if (hungerLevel >= 100) {
+                        msgEl.innerText = "Cheeky Dog is already full!";
+                    } else {
+                        kc -= 20;
+                        hungerLevel = Math.min(hungerLevel + 25, 100);
+                        msgEl.innerText = "Yum! That was delicious!";
+                        animatePet('bounce');
+                    }
+                } else {
+                    msgEl.innerText = "Not enough KinzCash!";
+                }
+            } else if (type === 'play') {
+                kc += 50;
+                hungerLevel = Math.max(hungerLevel - 15, 0);
+                msgEl.innerText = "You won a game at the Arcade!";
+                animatePet('spin');
             }
-            updateDisplay();
+            updateUI();
         }
 
-        function playGame() {
-            kinzcash += 50;
-            hunger = Math.max(hunger - 10, 0);
-            document.getElementById('game-message').innerText = "You won at Quizzy's Corner!";
-            updateDisplay();
+        /**
+         * Simple animations using JS style transforms
+         */
+        function animatePet(mode) {
+            if (mode === 'bounce') {
+                petImg.style.transform = "scale(1.2) translateY(-10px)";
+                setTimeout(() => petImg.style.transform = "scale(1)", 200);
+            } else if (mode === 'spin') {
+                petImg.style.transform = "rotate(360deg)";
+                setTimeout(() => petImg.style.transform = "rotate(0deg)", 400);
+            }
         }
 
-        // Initialize display
-        updateDisplay();
+        // Initialize display on load
+        updateUI();
     </script>
 
     <footer>

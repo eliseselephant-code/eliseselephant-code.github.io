@@ -3,7 +3,7 @@
 
 body {
     /* Path to your image */
-    background-image: url('../assets/img/back.png'); 
+    background-image: url('../assets/img/Back.png'); 
     
     /* This makes the image cover the whole screen */
     background-size: cover;

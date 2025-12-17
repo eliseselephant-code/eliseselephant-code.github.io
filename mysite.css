@@ -1,0 +1,151 @@
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    /* Path to your image */
+    background-image: url('../assets/img/back.png'); 
+    
+    /* This makes the image cover the whole screen */
+    background-size: cover;
+    
+    /* This keeps the background from moving when you scroll */
+    background-attachment: fixed;
+    
+    /* This centers the image */
+    background-position: center;
+    
+    /* Fallback color in case the image doesn't load */
+    background-color: #f0f8ff; 
+    
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* NAVIGATION */
+.custom-nav {
+    background-color: #00AEEF;
+    padding: 20px 10%; 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 4px solid #FFEB3B;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px; 
+}
+
+.custom-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.custom-nav a:hover {
+    color: #FFEB3B;
+}
+
+/* HEADER */
+.custom-header {
+    background-color: #00AEEF; 
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.star-divider {
+    color: #FFEB3B;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.content-box {
+    max-width: 900px;
+    margin: 40px auto; /* Changed to give some space at the top */
+    background: rgba(255, 255, 255, 0.95); /* Slightly see-through white */
+    padding: 40px;
+    border-radius: 0px !important; /* Perfectly square corners */
+    border: 4px solid #00AEEF; /* Adds a blue frame around your content */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+h2 {
+    color: #00AEEF;
+    border-bottom: 3px solid #FFEB3B; 
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+/* IMAGES & VIDEOS */
+/* This matches the class "basic-pet-room" in your scratch.html */
+.basic-pet-room {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    border: 10px solid #00AEEF;
+    display: block;
+    margin: 0 auto;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    margin-bottom: 30px;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 5px solid #00AEEF;
+    border-radius: 0px; /* Kept square for that 'basic' game look */
+}
+
+/* BUTTONS */
+.back-to-top {
+    display: inline-block;
+    background-color: #f83777; 
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    border: 2px solid #FFEB3B;
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    background: #2c3e50;
+    color: white;
+}
+/* Center the Jump to Top button */
+.top-btn-container {
+    text-align: center;
+    margin-top: 40px;
+}
+/* Indent the main list (My Pets, Dailies) */
+#collection ol {
+    padding-left: 40px;
+    margin-bottom: 20px;
+}
+
+/* Indent the sub-lists (Rajah, Amanda, etc.) */
+#collection ul {
+    padding-left: 30px;
+    margin-top: 10px;
+    list-style-type: disc; /* Ensures the dots show up */
+}
+
+/* Add a little space between the main list items */
+#collection li {
+    margin-bottom: 8px;
+    color: #333; /* Darker text for better reading */
+}
